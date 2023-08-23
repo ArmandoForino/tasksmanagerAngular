@@ -1,0 +1,9 @@
+
+<nb-select *ngIf="($tagsList|async)?.length!==0" multiple placeholder="Tags" name="tagsList" (selectedChange)="filterByTags($event)" class="mb-4">
+  <nb-option *ngFor="let tag of ($tagsList|async)" [value]="tag.id">{{tag.name}}</nb-option>
+</nb-select>
+
+<ng-container *ngFor="let task of ($tasksList|async)">
+  <ngx-task [task]="task" [isDetail]="isDetail" [showProject]="showProject" (deletedTasks)="onDeletedTasks($event)"></ngx-task>
+</ng-container>
+

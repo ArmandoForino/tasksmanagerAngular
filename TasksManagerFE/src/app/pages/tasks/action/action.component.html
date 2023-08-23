@@ -1,0 +1,45 @@
+<div class="col-md-12" *ngIf="($projectsList|async)?.length!==0; else noProjects">
+  <nb-card>
+    <nb-card-header>
+      <a class="mr-2" [routerLink]="[isAddMode? '/tasks' : '/tasks/'+task?.id]">
+        <nb-icon icon="arrow-back-outline"></nb-icon>
+      </a>
+      <span>{{isAddMode? 'Inserisci un nuovo Task' : 'Modifica il Task'}}</span>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="tasksActionForm" (ngSubmit)="onSubmit()" class="tasks-form">
+        <div class="form-group">
+          <label for="title" class="label">Titolo</label>
+          <input type="text" nbInput fullWidth fieldSize="large" type="text" placeholder="Titolo" name="title" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="content" class="label">Nota</label>
+          <textarea type="text" nbInput fullWidth fieldSize="large" placeholder="Inserisci la nota" name="content" formControlName="content"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="dueDate" class="label">Data</label>
+          <input nbInput placeholder="MM/DD/YYYY" [nbDatepicker]="dateTimePicker" name="dueDate" formControlName="dueDate" class="dueDate">
+          <nb-datepicker #dateTimePicker></nb-datepicker>
+        </div>
+        <div class="form-group">
+          <label for="project" class="label">Progetto</label>
+          <nb-select placeholder="Progetto" name="project" formControlName="project">
+            <nb-option *ngFor="let project of ($projectsList|async)" [value]="project.id">{{project.name}}</nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group" *ngIf="($tagsList|async)?.length!==0">
+          <label for="tagsList" class="label">Tags</label>
+          <nb-select  multiple placeholder="Tags" name="tagsList" formControlName="tagsList">
+            <nb-option *ngFor="let tag of ($tagsList|async)" [value]="tag.id">{{tag.name}}</nb-option>
+          </nb-select>
+        </div>
+        <button nbButton status="primary" [disabled]="!tasksActionForm.valid">{{isAddMode? 'Inserisci' : 'Modifica'}}</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<ng-template #noProjects>
+  <h2>Non ci sono progetti su cui lavorare, creane prima uno.</h2>
+  <button  nbButton status="primary" [routerLink]="['/projects','new']">Nuovo Progetto</button>
+</ng-template>

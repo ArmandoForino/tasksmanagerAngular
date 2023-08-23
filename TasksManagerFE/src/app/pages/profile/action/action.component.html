@@ -1,0 +1,23 @@
+<div class="col-md-12">
+  <nb-card>
+    <nb-card-header>
+      <a class="mr-2" routerLink="/profile">
+        <nb-icon icon="arrow-back-outline"></nb-icon>
+      </a>
+      <span>Modifica del profilo di {{($user|async)?.name}}</span>
+    </nb-card-header>
+    <nb-card-body>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="edit-form">
+        <div class="form-group">
+          <label for="name" class="label">Nome</label>
+          <input type="text" nbInput fullWidth fieldSize="large" type="text" placeholder="Nome" name="name"  [ngModel]="($user|async)?.name">
+        </div>
+        <div class="form-group">
+          <label for="password" class="label">Password</label>
+          <input type="text" nbInput fullWidth fieldSize="large" type="password" placeholder="Password" name="password" ngModel password>
+        </div>
+        <button nbButton status="primary" [disabled]="!loginForm.valid">Modifica</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

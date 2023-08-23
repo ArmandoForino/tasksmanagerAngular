@@ -1,0 +1,5 @@
+<ngx-project [project]="$project|async" [isDetail]="true" (deletedProject)="onDeletedProject()"></ngx-project>
+
+<h4 class="mt-3 mb-3 text-center">Lista dei Tasks sul progetto</h4>
+
+<ngx-tasks-list *ngIf="($project|async)?.status" [projectId]="id" [$data]="$projectTasksList" [showProject]="false"></ngx-tasks-list>

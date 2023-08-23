@@ -1,0 +1,12 @@
+<div *ngIf="($user|async)!==null; else visitatore">
+  <h4 class="text-center mt-3 mb-3">
+    <button nbButton ghost status="basic" (click)="changeDay(-1)"><nb-icon icon="arrowhead-left-outline"></nb-icon></button>
+    <span class="ml-3 mr-3">Tasks del {{tasksDate|date:"dd/MM/yyyy"}}</span>
+    <button nbButton ghost status="basic" (click)="changeDay(1)"><nb-icon icon="arrowhead-right-outline"></nb-icon></button>
+  </h4>
+  <ngx-tasks-list [$data]="$tasksList" [isDetail]="false" [showProject]="true"></ngx-tasks-list>
+</div>
+
+<ng-template #visitatore>
+<div>Benvenuto <b>Visitatore</b>!</div>
+</ng-template>

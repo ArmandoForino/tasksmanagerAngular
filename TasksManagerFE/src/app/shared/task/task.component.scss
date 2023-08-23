@@ -1,0 +1,9 @@
+a {text-decoration: none; color: #202020}
+a:hover  {color: #6c6c6c}
+
+.tagsList {margin:0; padding:0; list-style-type: none}
+.tagsList .tag {display: inline-block; font-weight: bold; font-size: 12px}
+.tagsList .tag:not(:first-child) {margin-left: 15px}
+
+.deleteBtn {margin-left: 10px}
+small {display: block}

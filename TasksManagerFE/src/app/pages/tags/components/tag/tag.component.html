@@ -1,0 +1,16 @@
+<nb-card class="tag" *ngIf="tag" >
+  <nb-card-header >
+    <span [ngStyle]="{'color': tag.color ? tag.color : 'inherit' }">{{tag.name}}</span>
+  </nb-card-header>
+  <nb-card-body *ngIf="tag.description">
+
+    <span>
+      {{ tag.description }}
+    </span>
+
+  </nb-card-body>
+  <nb-card-footer align="end">
+    <button nbButton status="primary" [routerLink]="['/tags','edit',tag.id]">Modifica</button>
+    <button nbButton status="danger" class="deleteBtn" (click)="deleteTag(tag.id)">Elimina</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,8 @@
+<button nbButton status="primary" [routerLink]="['/tasks','new']">Nuovo Task</button>
+
+<!-- <h4 *ngIf="($tasksList|async).length!==0" class="mt-3 mb-3 text-center">Lista di tutti i tuoi Tasks</h4> -->
+
+<ngx-tasks-list [$data]="$tasksList" [isDetail]="false" [showProject]="true"></ngx-tasks-list>
+
+
+

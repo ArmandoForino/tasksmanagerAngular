@@ -1,0 +1,18 @@
+<nb-card class="project" *ngIf="project" >
+  <nb-card-header >
+    <a *ngIf="!isDetail; else titleNoLink" [routerLink]="['/projects',project.id]">{{project.id}}. {{project.name}}</a>
+    <ng-template #titleNoLink>{{project.name}}</ng-template>
+  </nb-card-header>
+  <nb-card-body *ngIf="project.description">
+
+    <span>
+      {{ project.description }}
+    </span>
+
+  </nb-card-body>
+  <nb-card-footer align="end">
+    <button nbButton status="primary" [routerLink]="['/projects','edit',project.id]">Modifica</button>
+    <button nbButton status="danger" class="deleteBtn" (click)="deleteProject(project.id)">Elimina</button>
+  </nb-card-footer>
+</nb-card>
+

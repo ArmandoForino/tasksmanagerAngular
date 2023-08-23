@@ -1,0 +1,26 @@
+<nb-card class="task" *ngIf="task" [ngClass]="taskTagsClass">
+  <nb-card-header>
+      <a *ngIf="!isDetail; else titleNoLink" [routerLink]="['/tasks',task.id]">{{task.id}}. {{showProject?'['+task.Project.name+'] ':''}}{{task.title}}</a>
+      <ng-template #titleNoLink>{{showProject?'['+task.Project.name+'] ':''}}{{task.title}}</ng-template>
+      <small class="text-hint" *ngIf="task.dueDate">{{task.dueDate|date:"dd/MM/yyyy"}}</small>
+  </nb-card-header>
+  <nb-card-body *ngIf="task.content||task.Tags.length!==0">
+
+    <span *ngIf="!isDetail; else fullContent">
+      {{ (task.content&&(task.content.length>150) ? (task.content | slice:0:150)+'...':(task.content)) }}
+    </span>
+
+    <ul class="tagsList mt-3">
+      <li class="tag" [ngStyle]="{'color': tag.color ? tag.color : null }" *ngFor="let tag of task.Tags">#{{tag.name}}</li>
+    </ul>
+
+    <ng-template #fullContent>
+      {{ task.content }}
+    </ng-template>
+  </nb-card-body>
+  <nb-card-footer align="end" *ngIf="isDetail">
+    <button nbButton status="primary" [routerLink]="['/tasks','edit',task.id]">Modifica</button>
+    <button nbButton status="danger" class="deleteBtn" (click)="deleteTask(task.id)">Elimina</button>
+  </nb-card-footer>
+</nb-card>
+

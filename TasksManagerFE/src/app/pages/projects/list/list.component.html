@@ -1,0 +1,5 @@
+<button nbButton status="primary" class="mb-3" [routerLink]="['/projects','new']">Nuovo Progetto</button>
+
+<ng-container *ngFor="let project of ($projectsList|async)">
+  <ngx-project [project]="project" (deletedProject)="onDeletedProject($event)"></ngx-project>
+</ng-container>

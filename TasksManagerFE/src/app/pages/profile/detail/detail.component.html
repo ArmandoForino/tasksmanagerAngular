@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-body>
+    <nb-user
+      [onlyPicture]="false"
+      [name]="($user|async)?.name"
+      [title]="($user|async)?.email">
+    </nb-user>
+  </nb-card-body>
+  <nb-card-footer align="end">
+    <button nbButton status="primary" [routerLink]="['/profile','edit']">Modifica</button>
+  </nb-card-footer>
+</nb-card>
+
